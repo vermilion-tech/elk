@@ -1,0 +1,28 @@
+{
+   "target-url":"http://elk:5601",
+   "bind-address":"0.0.0.0",
+   "http-port":"8180",
+   "https-port":"8443",
+   "applications":[
+      {
+         "base-path":"/",
+         "adapter-config":{
+            "realm":"Sandbox",
+            "auth-server-url":"https://keycloak.vermilion.tech/auth",
+            "ssl-required":"none",
+            "resource":"elk.vermilion.tech",
+            "credentials":{
+               "secret": "ac286496-d939-4dd0-8930-e1a65877aac6"
+            }
+         },
+         "constraints":[
+            {
+               "pattern":"/*",
+               "roles-allowed":[
+                "elk.vermilion.tech:access"
+               ]
+            }
+         ]
+      }
+   ]
+}
