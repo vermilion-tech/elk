@@ -1,0 +1,33 @@
+version: '3'
+
+services:
+  elk:
+    build: .
+
+    ports:
+      - "9200:9200"
+
+    environment:
+      - TZ={{ timezone }}
+      - ES_HEAP_SIZE=1g
+      - LS_HEAP_SIZE=1g
+
+    volumes:
+      - elk-data:/var/lib/elasticsearch
+
+    labels:
+      traefik.enable: "{{ traefik.enable }}"
+      traefik.port: "{{ traefik.port }}"
+      traefik.backend: "{{ traefik.backend }}"
+      traefik.frontend.rule: "Host: {{ traefik.host }}"
+
+    networks:
+      - {{ traefik.network }}
+
+volumes:
+  elk-data:
+
+networks:
+  {{ traefik.network }}:
+    external:
+      name: {{ traefik.network }}

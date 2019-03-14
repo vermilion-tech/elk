@@ -1,0 +1,29 @@
+- name: Create /docker/elk directory
+  file:
+    path: "/docker/elk"
+    state: directory
+    mode: 0775
+    group: "{{ docker_group }}"
+    owner: "{{ ansible_user }}"
+
+- name: Create docker-compose.yml
+  template:
+    src: ../templates/docker-compose.yml.j2
+    dest: /docker/elk/docker-compose.yml
+    owner: "{{ ansible_user }}"
+    group: "{{ docker_group }}"
+    mode: 0775
+
+- name: Create Dockerfile
+  template:
+    src: ../templates/Dockerfile.j2
+    dest: /docker/elk/Dockerfile
+    owner: "{{ ansible_user }}"
+    group: "{{ docker_group }}"
+    mode: 0775
+
+- name: Bring up Docker services
+  docker_service:
+    project_src: /docker/elk
+    build: yes
+    state: present

@@ -1,0 +1,7 @@
+---
+# Installs ELK
+
+- name: Install ELK
+  hosts: all
+  roles:
+    - docker-elk

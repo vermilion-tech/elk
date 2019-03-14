@@ -25,6 +25,7 @@ provider "digitalocean" {
 module "elk-staging-droplet" {
   source = "git@github.com:vermilion-tech/terraform-digitalocean.git?ref=development//modules/droplet"
 
+  image    = "44699408"                                          # vt-packer-1.3.5-ubuntu-18-04-x64-docker-traefik-1552586978
   name     = "${var.base_name}"
   region   = "${var.region}"
   ssh_keys = ["ac:ff:22:c4:52:b3:10:e6:01:ca:80:c0:6d:8b:96:bc"]

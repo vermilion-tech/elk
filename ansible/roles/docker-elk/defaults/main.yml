@@ -1,0 +1,13 @@
+elk:
+  version: 661
+
+traefik:
+  network: traefik
+  enable: true
+  port: 5601
+  backend: elk-kibana
+  host: kibana.vermilion.tech
+
+timezone: America/New_York
+
+docker_group: docker
